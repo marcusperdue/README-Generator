@@ -2,6 +2,7 @@
 // npm install inquirer@8.2.4
 const fs = require('fs');
 const inquirer = require('inquirer');
+const axios = require('axios');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -66,22 +67,37 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.prompt(questions)
+    inquirer
+      .prompt(questions)
       .then((answers) => {
-          const readmeContent = generateReadme(answers);
-          writeToFile('README.md', readmeContent);
+        getLicenseBadge(answers.license)
+          .then((licenseBadge) => {
+            answers.licenseBadge = licenseBadge;
+            const readmeContent = generateReadme(answers);
+            writeToFile('README.md', readmeContent);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
-          console.error(error);
+        console.error(error);
       });
-}
+  }
 
+  function getLicenseBadge(license) {
+    const licenseBadgeUrl = `https://img.shields.io/badge/License-${encodeURIComponent(license)}-blue.svg`;
+    return axios.get(licenseBadgeUrl).then((response) => {
+      return response.data;
+    });
+  }
 function generateReadme(data) {
+  // Title section
   let readmeContent = `# ${data.title}\n\n`;
-
+  //License  Badge
+  readmeContent += `${data.licenseBadge}\n\n`;
   // Description section
   readmeContent += `## Description\n\n${data.description}\n\n`;
-
   // Table of Contents section
   readmeContent += '## Table of Contents\n\n';
   readmeContent += '- [Description](#description)\n';
