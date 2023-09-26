@@ -4,6 +4,13 @@
 
 This is a README generator, created to make quick quality README.
 
+## Demo Video
+[Video Demo](https://drive.google.com/file/d/13tnqpIOCIRX7TsEAdIEoRgAG_cdw43B6/view)
+
+
+[![README Video Demo](./assets/images/demo.png)](https://drive.google.com/file/d/13tnqpIOCIRX7TsEAdIEoRgAG_cdw43B6/view)
+
+
 ## Table of Contents
 
 - [Description](#description)
@@ -32,6 +39,8 @@ To use this README generator, follow these steps:
 4. Answer the prompts to provide information about your project.
 5. Once all prompts are completed, a `README.md` file will be generated with your project's information.
 
+<img src="./assets/images/bash.png" alt="GitHub Logo" width="auto" height="200">
+
 ## License
 
 This project is licensed under the MIT License. <br>
@@ -54,7 +63,8 @@ To run tests for this project, follow these steps:
 
 1. Open your terminal or command prompt.
 2. Navigate to the project's root directory.
-3. Run `npm test` to execute the tests.
+3. Run `npm install --save-dev jest`
+4. Run `npm test` to execute the tests.
 
 ## Questions
 
